@@ -7,14 +7,14 @@
 <meta name="description" content="Privacy Policy for Ande Games and all our mobile games and applications.">
 <style>
   :root {
-    --bg: #0f1115;
-    --surface: #1a1d24;
-    --surface-2: #232730;
-    --text: #e8eaed;
-    --text-dim: #9aa0a6;
+    --bg: #000000;
+    --surface: #131316;
+    --surface-2: #1c1c20;
+    --text: #f2f3f5;
+    --text-dim: #9a9a9f;
     --accent: #7c9eff;
     --accent-hover: #a4bcff;
-    --border: #2d323c;
+    --border: #262629;
   }
 
   * { box-sizing: border-box; }
@@ -22,14 +22,19 @@
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-    background: var(--bg);
+    background-color: var(--bg);
+    background-image:
+      repeating-linear-gradient(122deg, transparent 0, transparent 84px, rgba(255,255,255,0.05) 84px, rgba(255,255,255,0.05) 92px, transparent 92px, transparent 210px),
+      repeating-linear-gradient(122deg, transparent 0, transparent 41px, rgba(255,255,255,0.03) 41px, rgba(255,255,255,0.03) 44px, transparent 44px, transparent 155px),
+      repeating-linear-gradient(122deg, transparent 0, transparent 260px, rgba(255,255,255,0.06) 260px, rgba(255,255,255,0.06) 276px, transparent 276px, transparent 540px);
+    background-attachment: fixed;
     color: var(--text);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
   .nav {
-    background: rgba(15, 17, 21, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     padding: 16px 24px;
