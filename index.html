@@ -3,418 +3,316 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ande Games — Minimalist Mobile Games</title>
-<meta name="description" content="Ande Games — I make games. Minimalist mobile puzzles, hand-crafted and free to play.">
+<title>Ande Games</title>
+<meta name="description" content="Ande Games. I make games.">
+<meta name="theme-color" content="#000000">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ande Games">
+<meta property="og:description" content="I make games.">
+<meta property="og:image" content="https://andegames.github.io/andegames-icon.png">
+<meta property="og:url" content="https://andegames.github.io/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="/andegames-icon.png">
+<link rel="apple-touch-icon" href="/andegames-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --bg: #000000;
-    --surface: #131316;
-    --surface-2: #1c1c20;
-    --text: #f2f3f5;
-    --text-dim: #9a9a9f;
+    --text: #f4f5f7;
+    --text-dim: #8d8e94;
+    --text-faint: #5c5d63;
     --accent: #7c9eff;
-    --accent-hover: #a4bcff;
-    --border: #262629;
+    --accent-hover: #9db4ff;
+    --line: rgba(255, 255, 255, 0.09);
+    --line-strong: rgba(255, 255, 255, 0.18);
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --font-display: "Space Grotesk", var(--font-body);
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --edge: 24px;
+    --col: 760px;
   }
 
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text);
     background-color: var(--bg);
-    background-image:
-      repeating-linear-gradient(122deg, transparent 0, transparent 84px, rgba(255,255,255,0.05) 84px, rgba(255,255,255,0.05) 92px, transparent 92px, transparent 210px),
-      repeating-linear-gradient(122deg, transparent 0, transparent 41px, rgba(255,255,255,0.03) 41px, rgba(255,255,255,0.03) 44px, transparent 44px, transparent 155px),
-      repeating-linear-gradient(122deg, transparent 0, transparent 260px, rgba(255,255,255,0.06) 260px, rgba(255,255,255,0.06) 276px, transparent 276px, transparent 540px);
-    background-attachment: fixed;
-    color: var(--text);
-    line-height: 1.7;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
   }
 
-  .nav {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .nav-inner {
-    max-width: 1040px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .logo {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .logo-dot { color: var(--accent); }
-
-  .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    margin-left: 24px;
-    font-size: 14px;
-    transition: color 0.15s;
-  }
-
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a.active { color: var(--text); }
-
-  /* HERO */
-  .hero {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 120px 24px 80px;
-    text-align: center;
-    position: relative;
-  }
-
-  .hero::before {
+  /* Fixed full-viewport background layer — robust on mobile (no background-attachment jank) */
+  body::before {
     content: "";
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(124, 158, 255, 0.08) 0%, transparent 70%);
-    pointer-events: none;
+    position: fixed;
+    inset: 0;
     z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%),
+      #000 url("/andegames-background.png") center center / cover no-repeat;
   }
 
-  .eyebrow {
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 16px;
+  :focus-visible {
+    outline: 2px solid var(--accent-hover);
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
-  h1 {
-    font-size: 64px;
-    font-weight: 800;
-    letter-spacing: -2px;
-    margin: 0 0 24px;
-    line-height: 1.05;
-    background: linear-gradient(180deg, var(--text) 0%, var(--text-dim) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .skip-link {
+    position: absolute; left: 16px; top: -60px;
+    background: var(--accent); color: #000;
+    padding: 10px 16px; border-radius: 8px; font-weight: 600; z-index: 100;
+    transition: top 0.2s var(--ease);
   }
+  .skip-link:focus { top: 12px; }
 
-  .lead {
-    font-size: 19px;
-    color: var(--text-dim);
-    max-width: 540px;
-    margin: 0 auto 40px;
+  .wrap { max-width: var(--col); margin: 0 auto; padding-inline: var(--edge); }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(0, 0, 0, 0.45);
+    border-bottom: 1px solid var(--line);
   }
-
-  .hero-logo {
-    display: block;
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    margin: 0 auto;
+  .nav-inner {
+    max-width: var(--col); margin: 0 auto; padding: 12px var(--edge);
+    display: flex; align-items: center; justify-content: space-between;
   }
-
-  .hero-tagline {
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--text-dim);
-    letter-spacing: 0.2px;
-    margin: 18px 0 0;
+  .brand {
+    font-family: var(--font-display);
+    font-size: 16px; font-weight: 600; letter-spacing: -0.2px;
+    color: var(--text); text-decoration: none;
+    padding: 8px 2px;
   }
-
-  /* SECTION */
-  .section {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 80px 24px;
+  .brand .dot { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 2px; }
+  .nav-links a {
+    color: var(--text-dim); text-decoration: none;
+    font-size: 14px; padding: 10px 12px; border-radius: 8px;
+    transition: color 0.15s var(--ease), background 0.15s var(--ease);
   }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
 
-  h2 {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.8px;
-    margin: 0 0 12px;
-  }
-
-  .section-subtitle {
-    color: var(--text-dim);
-    font-size: 16px;
-    margin: 0 0 48px;
-  }
-
-  /* GAMES */
-  .games-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .game-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-    align-items: center;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .game-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  .game-info h3 {
-    margin: 0 0 8px;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-  }
-
-  .game-info p {
-    color: var(--text-dim);
-    margin: 0 0 16px;
-    font-size: 15px;
-  }
-
-  .game-meta {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .tag {
-    background: var(--surface-2);
-    color: var(--text-dim);
-    padding: 4px 12px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-
-  .status-pill {
-    background: rgba(124, 158, 255, 0.15);
-    color: var(--accent);
-    padding: 6px 14px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .game-thumb {
-    width: 120px;
-    height: 120px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #ec4899 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    color: white;
-    font-weight: 800;
-    letter-spacing: -2px;
-    object-fit: cover;
-  }
-
-  .play-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    background: var(--accent);
-    color: var(--bg);
-    padding: 10px 20px;
-    border-radius: 100px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: background 0.2s;
-  }
-
-  .play-btn:hover { background: var(--accent-hover); }
-
-  /* ABOUT */
-  .about {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 48px;
+  /* HERO — the wordmark is the thesis */
+  .hero {
+    max-width: var(--col); margin: 0 auto;
+    padding: 132px var(--edge) 108px;
     text-align: center;
   }
-
-  .about p {
+  .hero-mark {
+    display: block; margin: 0 auto;
+    width: 100%; max-width: 380px; height: auto;
+  }
+  .hero-line {
+    font-family: var(--font-display);
+    font-weight: 400; font-size: 17px; letter-spacing: 0.5px;
     color: var(--text-dim);
-    font-size: 17px;
-    max-width: 640px;
-    margin: 16px auto 0;
+    margin: 26px 0 0;
   }
 
-  /* CONTACT */
-  .contact {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 48px;
-    text-align: center;
+  /* SECTION LABEL */
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 0 0 4px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
   }
 
-  .contact h2 { margin-bottom: 16px; }
-  .contact p { color: var(--text-dim); margin: 0 0 24px; }
+  .work { padding-bottom: 120px; }
 
-  .email-btn {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--bg);
-    padding: 14px 32px;
-    border-radius: 100px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    transition: background 0.2s;
+  /* GAMES — hairline rows, not boxes */
+  .game-list { list-style: none; margin: 0; padding: 0; }
+  .game {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 4px;
+    border-bottom: 1px solid var(--line);
   }
-
-  .email-btn:hover { background: var(--accent-hover); }
-
-  a {
-    color: var(--accent);
-    text-decoration: none;
+  .game-icon {
+    width: 72px; height: 72px; border-radius: 18px;
+    display: block; object-fit: cover;
+    border: 1px solid var(--line-strong);
+  }
+  .game-main { min-width: 0; }
+  .game-name {
+    font-family: var(--font-display);
+    font-size: 27px; font-weight: 600; letter-spacing: -0.5px;
+    margin: 0; line-height: 1.15;
+  }
+  .game-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 8px;
+    font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  /* Google Play icon button: muted by default, full colour on hover (desktop) */
+  .play-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 10px; border-radius: 14px;
+    transition: background 0.2s var(--ease);
+  }
+  .play-badge:hover { background: rgba(255,255,255,0.05); }
+  .play-badge img {
+    width: 38px; height: 42px; display: block;
+    transition: filter 0.28s var(--ease), transform 0.28s var(--ease);
+  }
+  @media (hover: hover) {
+    .play-badge img { filter: grayscale(1) opacity(0.5); }
+    .play-badge:hover img,
+    .play-badge:focus-visible img {
+      filter: drop-shadow(0 3px 12px rgba(66,133,244,0.45));
+      transform: scale(1.08);
+    }
   }
 
   /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 24px;
-    margin-top: 40px;
-  }
-
+  footer { border-top: 1px solid var(--line); }
   .footer-inner {
-    max-width: 1040px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
+    max-width: var(--col); margin: 0 auto; padding: 32px var(--edge);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px;
   }
-
-  .footer-copyright {
-    color: var(--text-dim);
-    font-size: 13px;
-  }
-
+  .footer-inner small { color: var(--text-faint); font-size: 13px; }
+  .footer-links { display: flex; gap: 4px; }
   .footer-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    margin-left: 24px;
-    font-size: 13px;
-    transition: color 0.15s;
+    color: var(--text-dim); text-decoration: none;
+    font-size: 13px; padding: 8px 10px; border-radius: 8px;
+    transition: color 0.15s var(--ease);
   }
-
   .footer-links a:hover { color: var(--text); }
 
-  @media (max-width: 720px) {
-    h1 { font-size: 44px; letter-spacing: -1px; }
-    .hero { padding: 64px 20px 48px; }
-    .lead { font-size: 17px; }
-    .hero-logo { max-width: 320px; }
-    .hero-tagline { font-size: 19px; }
-    .game-card { grid-template-columns: 1fr; text-align: center; }
-    .game-thumb { margin: 0 auto; }
-    .about, .contact { padding: 32px 24px; }
-    .nav-links a { margin-left: 14px; }
-    .footer-links a { margin-left: 12px; }
-    .footer-inner { flex-direction: column; }
+  /* Reveal */
+  [data-reveal] {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  [data-reveal].in { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    :root { --edge: 18px; }
+    .brand { font-size: 15px; }
+    .hero { padding: 84px var(--edge) 72px; }
+    .hero-mark { max-width: 260px; }
+    .hero-line { font-size: 15px; margin-top: 20px; }
+    .game {
+      grid-template-columns: auto 1fr;
+      gap: 16px 18px;
+      padding: 22px 2px;
+    }
+    .game-icon { width: 60px; height: 60px; border-radius: 15px; }
+    .game-name { font-size: 22px; }
+    .play-badge { grid-column: 1 / -1; justify-self: start; margin-left: -6px; }
+    .work { padding-bottom: 88px; }
+    .nav-links a { padding: 10px 9px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: 0.001ms !important; }
+    [data-reveal] { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#games">Skip to games</a>
+
 <nav class="nav">
   <div class="nav-inner">
-    <a class="logo" href="/">Ande Games<span class="logo-dot">.</span></a>
+    <a class="brand" href="/">Ande Games<span class="dot">.</span></a>
     <div class="nav-links">
-      <a href="/" class="active">Home</a>
+      <a href="#games">Games</a>
       <a href="/privacy-policy/">Privacy</a>
       <a href="mailto:andegames9@gmail.com">Contact</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
-  <img src="/andegames-logo.png" alt="Ande Games" class="hero-logo">
-  <p class="hero-tagline">I make games.</p>
-</section>
+<header class="hero">
+  <img src="/andegames-logo.png" alt="Ande Games" class="hero-mark"
+       width="594" height="173" fetchpriority="high" decoding="async" data-reveal>
+  <p class="hero-line" data-reveal>I make games.</p>
+</header>
 
-<section class="section">
-  <h2>Games</h2>
+<main>
+<section class="work wrap" id="games">
+  <p class="section-label" data-reveal>Games</p>
+  <ul class="game-list">
 
-  <div class="games-grid">
-
-    <div class="game-card">
-      <div class="game-info">
-        <span class="status-pill">Live on Google Play</span>
-        <h3 style="margin-top: 14px;">Stick Sort</h3>
-        <p>A relaxing drag-to-sort puzzle game. Arrange colored bars into beautiful patterns — ascending, pyramid, valley, zigzag and more. 50+ hand-crafted levels, stunning gradient backgrounds, no pressure.</p>
-        <div class="game-meta">
-          <span class="tag">Puzzle</span>
-          <span class="tag">Casual</span>
-          <span class="tag">Relaxing</span>
-          <span class="tag">Brain Training</span>
-        </div>
-        <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.andegames.sticksort" target="_blank" rel="noopener">▶ Get it on Google Play</a>
+    <li class="game" data-reveal>
+      <img src="/StickSortIconFinal.min.png" alt="Stick Sort" class="game-icon"
+           width="256" height="256" loading="lazy" decoding="async">
+      <div class="game-main">
+        <h3 class="game-name">Stick Sort</h3>
+        <span class="game-status">Live on Google Play</span>
       </div>
-      <img src="/StickSortIconFinal.png" alt="Stick Sort" class="game-thumb">
-    </div>
+      <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.andegames.sticksort"
+         target="_blank" rel="noopener" aria-label="Get Stick Sort on Google Play">
+        <img src="/googleplay.svg" alt="Get it on Google Play" width="38" height="42" decoding="async">
+      </a>
+    </li>
 
-    <div class="game-card">
-      <div class="game-info">
-        <span class="status-pill">Coming Soon</span>
-        <h3 style="margin-top: 14px;">Balloon Sort</h3>
-        <p>A soothing color-sorting puzzle. Guide floating balloons until every bunch is a single color — gentle physics, calming visuals, and just-right difficulty. No timers, no rush, pure flow.</p>
-        <div class="game-meta">
-          <span class="tag">Puzzle</span>
-          <span class="tag">Casual</span>
-          <span class="tag">Relaxing</span>
-          <span class="tag">Brain Training</span>
-        </div>
+    <li class="game" data-reveal>
+      <img src="/BalloonSortIcon.min.png" alt="Balloon Sort" class="game-icon"
+           width="256" height="256" loading="lazy" decoding="async">
+      <div class="game-main">
+        <h3 class="game-name">Balloon Sort</h3>
+        <span class="game-status">Coming soon</span>
       </div>
-      <img src="/BalloonSortIcon.png" alt="Balloon Sort" class="game-thumb">
-    </div>
+    </li>
 
-  </div>
+  </ul>
 </section>
+</main>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-copyright">&copy; 2026 Ande Games. All rights reserved.</div>
+    <small>&copy; 2026 Ande Games</small>
     <div class="footer-links">
-      <a href="/">Home</a>
       <a href="/privacy-policy/">Privacy</a>
-      <a href="/data-deletion/">Data Deletion</a>
       <a href="mailto:andegames9@gmail.com">Contact</a>
     </div>
   </div>
 </footer>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('[data-reveal]');
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+    els.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 70, 280) + 'ms';
+      io.observe(el);
+    });
+  })();
+</script>
 
 </body>
 </html>

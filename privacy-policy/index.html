@@ -3,221 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — Ande Games</title>
-<meta name="description" content="Privacy Policy for Ande Games and all our mobile games and applications.">
+<title>Privacy Policy</title>
+<meta name="description" content="Privacy Policy for Ande Games.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="/andegames-icon.png">
+<link rel="apple-touch-icon" href="/andegames-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #000000;
-    --surface: #131316;
-    --surface-2: #1c1c20;
+    --surface: #121215;
+    --surface-2: #1a1a1e;
     --text: #f2f3f5;
-    --text-dim: #9a9a9f;
+    --text-dim: #a5a6ac;
     --accent: #7c9eff;
     --accent-hover: #a4bcff;
+    --accent-soft: rgba(124, 158, 255, 0.14);
     --border: #262629;
+    --border-strong: #34343a;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --font-display: "Space Grotesk", var(--font-body);
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    font-family: var(--font-body);
+    font-size: 16px;
     background-color: var(--bg);
-    background-image:
-      repeating-linear-gradient(122deg, transparent 0, transparent 84px, rgba(255,255,255,0.05) 84px, rgba(255,255,255,0.05) 92px, transparent 92px, transparent 210px),
-      repeating-linear-gradient(122deg, transparent 0, transparent 41px, rgba(255,255,255,0.03) 41px, rgba(255,255,255,0.03) 44px, transparent 44px, transparent 155px),
-      repeating-linear-gradient(122deg, transparent 0, transparent 260px, rgba(255,255,255,0.06) 260px, rgba(255,255,255,0.06) 276px, transparent 276px, transparent 540px);
-    background-attachment: fixed;
     color: var(--text);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
   }
+
+  /* Fixed full-viewport background layer (robust on mobile) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%),
+      #000 url("/andegames-background.png") center center / cover no-repeat;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-hover);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .skip-link {
+    position: absolute; left: 16px; top: -60px;
+    background: var(--accent); color: #000;
+    padding: 10px 16px; border-radius: 10px; font-weight: 600; z-index: 100;
+    transition: top 0.2s var(--ease);
+  }
+  .skip-link:focus { top: 12px; }
 
   .nav {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    padding: 10px 24px;
+    position: sticky; top: 0; z-index: 20;
   }
-
   .nav-inner {
-    max-width: 880px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    max-width: 880px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
   }
-
   .logo {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--text);
-    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
+    color: var(--text); text-decoration: none;
+    padding: 8px 4px; display: inline-flex; align-items: center;
   }
-
   .logo-dot { color: var(--accent); }
-
+  .nav-links { display: flex; align-items: center; }
   .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    margin-left: 24px;
-    font-size: 14px;
-    transition: color 0.15s;
+    color: var(--text-dim); text-decoration: none;
+    margin-left: 6px; padding: 10px 12px; font-size: 14px; border-radius: 8px;
+    transition: color 0.15s var(--ease), background 0.15s var(--ease);
   }
-
-  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
 
   .hero {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 64px 24px 32px;
-    text-align: center;
+    max-width: 880px; margin: 0 auto;
+    padding: 72px 24px 24px; text-align: center;
   }
-
   .eyebrow {
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 12px;
+    display: inline-block;
+    color: var(--accent); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px;
+    padding: 6px 14px; border: 1px solid var(--border-strong);
+    border-radius: 100px; background: rgba(255,255,255,0.02);
   }
-
   h1 {
-    font-size: 44px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    margin: 0 0 16px;
-    line-height: 1.15;
+    font-family: var(--font-display);
+    font-size: 46px; font-weight: 700; letter-spacing: -1.2px;
+    margin: 0 0 16px; line-height: 1.1;
   }
+  .updated { color: var(--text-dim); font-size: 14px; }
 
-  .updated {
-    color: var(--text-dim);
-    font-size: 14px;
-  }
-
-  .container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 24px 24px 80px;
-  }
+  .container { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
 
   .intro {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 28px;
-    margin-bottom: 40px;
-    font-size: 16px;
+    border-radius: 16px;
+    padding: 24px 28px; margin-bottom: 40px; font-size: 16px;
   }
 
   h2 {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    margin: 48px 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
+    font-family: var(--font-display);
+    font-size: 23px; font-weight: 600; letter-spacing: -0.4px;
+    margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
   }
-
-  h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 24px 0 8px;
-    color: var(--text);
-  }
+  h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; color: var(--text); }
 
   p { margin: 0 0 16px; color: var(--text); }
-
-  ul {
-    padding-left: 22px;
-    margin: 12px 0 20px;
-  }
-
-  li {
-    margin-bottom: 8px;
-    color: var(--text);
-  }
-
+  ul { padding-left: 22px; margin: 12px 0 20px; }
+  li { margin-bottom: 8px; color: var(--text); }
   li strong { color: var(--text); }
 
   a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.15s;
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid transparent; transition: border-color 0.15s var(--ease);
   }
-
   a:hover { border-bottom-color: var(--accent); }
 
   .service-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 12px;
   }
-
-  .service-card strong {
-    display: block;
-    margin-bottom: 4px;
-    color: var(--text);
-  }
-
-  .service-card p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 14px;
-  }
+  .service-card strong { display: block; margin-bottom: 4px; color: var(--text); }
+  .service-card p { margin: 0; color: var(--text-dim); font-size: 14px; word-break: break-word; }
 
   .contact {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-    text-align: center;
-    margin-top: 32px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; text-align: center; margin-top: 32px;
   }
-
   .contact h3 { margin-top: 0; font-size: 18px; }
-
   .contact a {
-    display: inline-block;
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: 500;
+    display: inline-block; margin-top: 8px; font-size: 16px; font-weight: 500;
+    word-break: break-word;
   }
 
   footer {
     border-top: 1px solid var(--border);
-    padding: 32px 24px;
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 13px;
+    padding: 32px 24px; text-align: center;
+    color: var(--text-dim); font-size: 13px;
   }
-
   footer a { color: var(--text-dim); }
   footer a:hover { color: var(--text); border-bottom-color: var(--text-dim); }
 
-  @media (max-width: 600px) {
-    h1 { font-size: 32px; }
-    .hero { padding: 40px 20px 20px; }
-    .nav-links a { margin-left: 14px; }
+  @media (max-width: 720px) {
+    .nav { padding: 10px 16px; }
+    .nav-links a { margin-left: 2px; padding: 10px 10px; font-size: 13px; }
+    h1 { font-size: 32px; letter-spacing: -0.6px; }
+    .hero { padding: 48px 20px 16px; }
+    .container { padding: 20px 20px 64px; }
+    .intro { padding: 20px 20px; }
+    h2 { font-size: 20px; margin-top: 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: 0.001ms !important; }
   }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="logo" href="/">Ande Games<span class="logo-dot">.</span></a>
     <div class="nav-links">
       <a href="/">Home</a>
-      <a href="/data-deletion/">Data Deletion</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -229,7 +202,7 @@
   <div class="updated">Effective as of June 2, 2026 &middot; Last updated: June 6, 2026</div>
 </section>
 
-<main class="container">
+<main class="container" id="main">
 
   <div class="intro">
     This Privacy Policy explains how <strong>Ande Games</strong> ("we", "us", "our", or the "Service Provider") collects, uses, and shares information when you use any of our mobile games or applications, including any related services we operate (collectively, the "Services" or the "Application"). This policy applies to all current and future games published under the Ande Games brand, including but not limited to <em>Stick Sort</em>.
@@ -304,9 +277,9 @@
   <h2>6. Legal Basis (GDPR)</h2>
   <p>If you are located in the European Economic Area (EEA), United Kingdom, or Switzerland, our legal basis for collecting and using the information described above depends on the specific information and context:</p>
   <ul>
-    <li><strong>Consent</strong> — for personalized advertising and analytics, where required.</li>
-    <li><strong>Legitimate interests</strong> — for crash reporting and non-personalized ads needed to keep our games free to play.</li>
-    <li><strong>Legal obligation</strong> — where processing is required by applicable law.</li>
+    <li><strong>Consent</strong>:for personalized advertising and analytics, where required.</li>
+    <li><strong>Legitimate interests</strong>:for crash reporting and non-personalized ads needed to keep our games free to play.</li>
+    <li><strong>Legal obligation</strong>:where processing is required by applicable law.</li>
   </ul>
 
   <h2>7. California Privacy Rights (CCPA / CPRA)</h2>
@@ -369,7 +342,7 @@
 </main>
 
 <footer>
-  &copy; 2026 Ande Games. All rights reserved. &middot; <a href="/" style="color: var(--text-dim);">Home</a> &middot; <a href="/data-deletion/" style="color: var(--text-dim);">Data Deletion</a>
+  &copy; 2026 Ande Games. All rights reserved. &middot; <a href="/">Home</a>
 </footer>
 
 </body>
