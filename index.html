@@ -13,6 +13,10 @@
 <meta property="og:image" content="https://andegames.github.io/andegames-icon.png">
 <meta property="og:url" content="https://andegames.github.io/">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ande Games">
+<meta name="twitter:description" content="I make games. Stick Sort and Balloon Sort.">
+<meta name="twitter:image" content="https://andegames.github.io/andegames-icon.png">
+<link rel="canonical" href="https://andegames.github.io/">
 
 <link rel="icon" type="image/png" href="/andegames-icon.png">
 <link rel="apple-touch-icon" href="/andegames-icon.png">
@@ -113,6 +117,7 @@
     padding: 132px var(--edge) 108px;
     text-align: center;
   }
+  .hero-title { margin: 0; font-size: inherit; font-weight: inherit; line-height: 0; }
   .hero-mark {
     display: block; margin: 0 auto;
     width: 100%; max-width: 380px; height: auto;
@@ -231,6 +236,60 @@
     [data-reveal] { opacity: 1; transform: none; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://andegames.github.io/#org",
+      "name": "Ande Games",
+      "url": "https://andegames.github.io/",
+      "logo": "https://andegames.github.io/andegames-icon.png",
+      "email": "andegames9@gmail.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://andegames.github.io/#website",
+      "url": "https://andegames.github.io/",
+      "name": "Ande Games",
+      "publisher": {
+        "@id": "https://andegames.github.io/#org"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "VideoGame",
+      "name": "Stick Sort",
+      "url": "https://play.google.com/store/apps/details?id=com.andegames.sticksort",
+      "image": "https://andegames.github.io/StickSortIconFinal.min.png",
+      "operatingSystem": "Android",
+      "applicationCategory": "GameApplication",
+      "gamePlatform": "Android",
+      "publisher": {
+        "@id": "https://andegames.github.io/#org"
+      },
+      "author": {
+        "@id": "https://andegames.github.io/#org"
+      }
+    },
+    {
+      "@type": "VideoGame",
+      "name": "Balloon Sort",
+      "image": "https://andegames.github.io/BalloonSortIcon.min.png",
+      "operatingSystem": "Android",
+      "applicationCategory": "GameApplication",
+      "gamePlatform": "Android",
+      "publisher": {
+        "@id": "https://andegames.github.io/#org"
+      },
+      "author": {
+        "@id": "https://andegames.github.io/#org"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -248,14 +307,15 @@
 </nav>
 
 <header class="hero">
+  <h1 class="hero-title">
   <img src="/andegames-logo.png" alt="Ande Games" class="hero-mark"
-       width="594" height="173" fetchpriority="high" decoding="async" data-reveal>
+       width="594" height="173" fetchpriority="high" decoding="async" data-reveal></h1>
   <p class="hero-line" data-reveal>I make games.</p>
 </header>
 
 <main>
 <section class="work wrap" id="games">
-  <p class="section-label" data-reveal>Games</p>
+  <h2 class="section-label" data-reveal>Games</h2>
   <ul class="game-list">
 
     <li class="game" data-reveal>

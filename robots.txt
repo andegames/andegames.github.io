@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://andegames.github.io/sitemap.xml
